@@ -11,9 +11,8 @@ class DatabaseSeeder extends Seeder {
 	public function run() : void {
 		// ( new UserSeeder() )->run();
 		// ( new PostSeeder() )->run();
-		print_r(self::getCharacterLines());
-	}
 
+	}
 
 	public static function getCharacterLines() : array {
 		$filePath = base_path('database/src/simpsons_dataset.csv');
