@@ -7,9 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
+/**
+ * @method static where( string $string, $user_id )
+ * @method static create( mixed $validated )
+ */
 class Post extends Model {
 	use HasFactory, SoftDeletes;
+	use Notifiable;
 
 	/**
 	 * The attributes that are mass assignable.
@@ -34,10 +40,16 @@ class Post extends Model {
 		];
 	}
 
+	/**
+	 * @return BelongsTo
+	 */
 	public function user() : BelongsTo {
 		return $this->belongsTo(User::class);
 	}
 
+	/**
+	 * @return MorphToMany
+	 */
 	public function reactions() : MorphToMany {
 		return $this->morphToMany(Reaction::class, 'reactionable');
 	}
