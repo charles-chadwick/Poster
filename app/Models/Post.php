@@ -20,7 +20,6 @@ class Post extends Model
     protected $fillable = [
         'status',
         'content',
-        'post_id',
         'user_id',
     ];
 
@@ -33,14 +32,8 @@ class Post extends Model
     {
         return [
             'id' => 'integer',
-            'post_id' => 'integer',
             'user_id' => 'integer',
         ];
-    }
-
-    public function post(): BelongsTo
-    {
-        return $this->belongsTo(Post::class);
     }
 
     public function user(): BelongsTo

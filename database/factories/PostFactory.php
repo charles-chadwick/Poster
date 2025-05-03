@@ -24,7 +24,6 @@ class PostFactory extends Factory
         return [
             'status' => fake()->regexify('[A-Za-z0-9]{25}'),
             'content' => fake()->paragraphs(3, true),
-            'post_id' => Post::factory(),
             'user_id' => User::factory(),
         ];
     }

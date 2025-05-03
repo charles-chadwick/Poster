@@ -16,7 +16,7 @@ models:
         softDeletes
         timestamps
         relationships:
-            belongsTo: Post, User
+            belongsTo: User
             morphToMany: Reaction
 
     Comment:
@@ -47,3 +47,36 @@ models:
             belongsTo: user
             hasMany: follower
 
+controllers:
+    Post:
+        index:
+            query: where:user_id order:created_at limit:10
+            render: post.index with:posts
+        show:
+            render: post.show with:post
+        create:
+            render: post.create
+        store:
+            validate: post
+            save: post
+            redirect: post.index
+        update:
+            validate: post
+            update: post
+            redirect: post.show    
+    Comment:
+        index:
+            query: where:post_id order:created_at limit:10
+            render: comment.index with:comments
+        show:
+            render: comment.show with:comment,post
+        create:
+            render: comment.create
+        store:
+            validate: comment
+            save: comment
+            redirect: post.show
+        update:
+            validate: comment
+            save: comment
+            redirect: post.show

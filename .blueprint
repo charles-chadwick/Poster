@@ -1,22 +1,38 @@
 created:
+    - app/Http/Controllers/PostController.php
+    - app/Http/Controllers/CommentController.php
     - database/factories/UserFactory.php
     - database/factories/PostFactory.php
     - database/factories/CommentFactory.php
     - database/factories/ReactionFactory.php
     - database/factories/FollowerFactory.php
-    - database/migrations/2025_05_03_113626_create_users_table.php
-    - database/migrations/2025_05_03_113627_create_posts_table.php
-    - database/migrations/2025_05_03_113628_create_comments_table.php
-    - database/migrations/2025_05_03_113629_create_reactions_table.php
-    - database/migrations/2025_05_03_113630_create_followers_table.php
+    - database/migrations/2025_05_03_115009_create_users_table.php
+    - database/migrations/2025_05_03_115010_create_posts_table.php
+    - database/migrations/2025_05_03_115011_create_comments_table.php
+    - database/migrations/2025_05_03_115012_create_reactions_table.php
+    - database/migrations/2025_05_03_115013_create_followers_table.php
     - app/Models/User.php
     - app/Models/Post.php
     - app/Models/Comment.php
     - app/Models/Reaction.php
     - app/Models/Follower.php
+    - tests/Feature/Http/Controllers/PostControllerTest.php
+    - tests/Feature/Http/Controllers/CommentControllerTest.php
+    - app/Http/Requests/PostStoreRequest.php
+    - app/Http/Requests/PostUpdateRequest.php
+    - app/Http/Requests/CommentStoreRequest.php
+    - app/Http/Requests/CommentUpdateRequest.php
+    - resources/views/post/index.blade.php
+    - resources/views/post/show.blade.php
+    - resources/views/post/create.blade.php
+    - resources/views/comment/index.blade.php
+    - resources/views/comment/show.blade.php
+    - resources/views/comment/create.blade.php
+updated:
+    - routes/web.php
 models:
     User: { role: 'string:25', status: 'string:25', first_name: 'string:25', last_name: 'string:25', email: string, email_verified_at: 'timestamp nullable', password: string, softdeletes: softDeletes, timestamps: timestamps }
-    Post: { status: 'string:25', content: text, softdeletes: softDeletes, timestamps: timestamps, relationships: { belongsTo: 'Post, User', morphToMany: Reaction } }
+    Post: { status: 'string:25', content: text, softdeletes: softDeletes, timestamps: timestamps, relationships: { belongsTo: User, morphToMany: Reaction } }
     Comment: { status: 'string:25', content: text, softdeletes: softDeletes, timestamps: timestamps, relationships: { belongsTo: 'Post, User', morphToMany: Reaction } }
     Reaction: { type: 'string:25', 'on': string, on_id: integer, softdeletes: softDeletes, timestamps: timestamps, relationships: { morphTo: 'Reaction able' } }
     Follower: { status: 'string:25', user_id: integer, follower_id: integer, softdeletes: softDeletes, timestamps: timestamps, relationships: { belongsTo: user, hasMany: follower } }
