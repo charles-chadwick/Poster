@@ -1,15 +1,19 @@
 <?php
 
+
 namespace App\Models;
 
-use Attribute;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Str;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class User extends Model {
-	use HasFactory, SoftDeletes;
+class User extends Authenticatable
+{
+	/** @use HasFactory<UserFactory> */
+	use HasFactory, Notifiable, SoftDeletes;
 
 	/**
 	 * The attributes that are mass assignable.
