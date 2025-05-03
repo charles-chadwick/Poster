@@ -1,0 +1,49 @@
+models:
+    User:
+        role:              string:25
+        status:            string:25
+        first_name:        string:25
+        last_name:         string:25
+        email:             string
+        email_verified_at: timestamp nullable
+        password:          string
+        softDeletes
+        timestamps
+
+    Post:
+        status: string:25
+        content: text
+        softDeletes
+        timestamps
+        relationships:
+            belongsTo: Post, User
+            morphToMany: Reaction
+
+    Comment:
+        status: string:25
+        content: text
+        softDeletes
+        timestamps
+        relationships:
+            belongsTo: Post, User
+            morphToMany: Reaction
+
+    Reaction:
+        type: string:25
+        on: string
+        on_id: integer
+        softDeletes
+        timestamps
+        relationships:
+            morphTo: Reaction able
+
+    Follower:
+        status: string:25
+        user_id: integer
+        follower_id: integer
+        softDeletes
+        timestamps
+        relationships:
+            belongsTo: user
+            hasMany: follower
+
