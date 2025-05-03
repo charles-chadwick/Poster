@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('reactions', function (Blueprint $table) {
             $table->id();
             $table->string('type', 25);
-            $table->string('on');
-            $table->integer('on_id');
-            $table->morphs('reaction able');
-            $table->timestamps();
-            $table->softDeletes();
+			$table->string('on');
+			$table->integer('on_id');
+			$table->unsignedBigInteger('user_id');
+			$table->timestamps();
+			$table->softDeletes();
         });
     }
 

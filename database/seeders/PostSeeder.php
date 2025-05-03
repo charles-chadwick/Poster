@@ -12,14 +12,16 @@ class PostSeeder extends Seeder {
 	 * Run the database seeds.
 	 */
 	public function run() : void {
+
+
+
 		Post::factory()
-			->create([
+			->sequence(fn ($sequence) => [
+				'user_id' => User::inRandomOrder()->first()->id,
 				'status'  => PostStatus::Published,
 				'content' => "Hi I'm a post.",
-				'user_id' => User::where('status', 'Active')
-								 ->inRandomOrder()
-								 ->first()->id
-			]);
+			])
+			->create();
 
 	}
 

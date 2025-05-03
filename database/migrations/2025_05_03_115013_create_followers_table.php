@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('followers', function (Blueprint $table) {
             $table->id();
-            $table->string('status', 25);
-            $table->foreignId('user_id');
-            $table->integer('follower_id');
+			$table->unsignedBigInteger('user_id');
+			$table->unsignedBigInteger('follower_id');
             $table->timestamps();
             $table->softDeletes();
         });
