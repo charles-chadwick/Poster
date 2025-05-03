@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class User extends Model {
 	use HasFactory, SoftDeletes;
@@ -43,5 +45,9 @@ class User extends Model {
 			'id'                => 'integer',
 			'email_verified_at' => 'timestamp',
 		];
+	}
+
+	public function getFullNameAttribute() : string {
+		return trim($this->first_name.' '.$this->last_name);
 	}
 }

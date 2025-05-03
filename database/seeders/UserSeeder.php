@@ -16,13 +16,13 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-		DB::table('users')->delete();
+		DB::table('users')->truncate();
 
 		$path = database_path('src/characters.csv'); // Ensure the file is in the `database/seeders` directory
 
 		if ( file_exists($path) ) {
 			$file = fopen($path, 'r');
-			$index = 0;
+			fgetcsv($file); // Get the header row of the CSV
 
 			while ( ( $row = fgetcsv($file) ) !== false ) {
 
