@@ -2,6 +2,9 @@
 
 namespace Tests\Feature\Http\Controllers;
 
+use App\Http\Controllers\PostController;
+use App\Http\Requests\PostStoreRequest;
+use App\Http\Requests\PostUpdateRequest;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -57,9 +60,9 @@ final class PostControllerTest extends TestCase
     public function store_uses_form_request_validation(): void
     {
         $this->assertActionUsesFormRequest(
-            \App\Http\Controllers\PostController::class,
+            PostController::class,
             'store',
-            \App\Http\Requests\PostStoreRequest::class
+            PostStoreRequest::class
         );
     }
 
@@ -92,9 +95,9 @@ final class PostControllerTest extends TestCase
     public function update_uses_form_request_validation(): void
     {
         $this->assertActionUsesFormRequest(
-            \App\Http\Controllers\PostController::class,
+            PostController::class,
             'update',
-            \App\Http\Requests\PostUpdateRequest::class
+            PostUpdateRequest::class
         );
     }
 

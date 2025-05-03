@@ -2,6 +2,9 @@
 
 namespace Tests\Feature\Http\Controllers;
 
+use App\Http\Controllers\CommentController;
+use App\Http\Requests\CommentStoreRequest;
+use App\Http\Requests\CommentUpdateRequest;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
@@ -59,9 +62,9 @@ final class CommentControllerTest extends TestCase
     public function store_uses_form_request_validation(): void
     {
         $this->assertActionUsesFormRequest(
-            \App\Http\Controllers\CommentController::class,
+            CommentController::class,
             'store',
-            \App\Http\Requests\CommentStoreRequest::class
+            CommentStoreRequest::class
         );
     }
 
@@ -97,9 +100,9 @@ final class CommentControllerTest extends TestCase
     public function update_uses_form_request_validation(): void
     {
         $this->assertActionUsesFormRequest(
-            \App\Http\Controllers\CommentController::class,
+            CommentController::class,
             'update',
-            \App\Http\Requests\CommentUpdateRequest::class
+            CommentUpdateRequest::class
         );
     }
 
