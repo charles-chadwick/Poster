@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasDateFormat;
 use Database\Factories\FollowerFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Follower extends Model {
 	/** @use HasFactory<FollowerFactory> */
 	use HasFactory, SoftDeletes;
-
+	use HasDateFormat;
 	/**
 	 * The attributes that are mass assignable.
 	 *
