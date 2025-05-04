@@ -13,8 +13,6 @@ class PostSeeder extends Seeder {
 	 */
 	public function run() : void {
 
-
-
 		Post::factory()
 			->sequence(fn ($sequence) => [
 				'user_id' => User::inRandomOrder()->first()->id,

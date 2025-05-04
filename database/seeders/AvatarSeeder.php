@@ -18,7 +18,7 @@ class AvatarSeeder extends Seeder {
 
         // get the names of patients and users
         collect(User::all())
-            ->merge(Patient::all())
+            ->merge(User::all())
             ->map(function ($model) {
                 $this->addImage($model);
             });

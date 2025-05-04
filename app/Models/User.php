@@ -4,19 +4,19 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\Traits\HasActivity;
-use App\Models\Traits\HasDateFormat;
-use Database\Factories\UserFactory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
-{
-	/** @use HasFactory<UserFactory> */
-	use HasFactory, Notifiable, SoftDeletes;
-	use HasDateFormat, HasActivity;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\MustVerifyEmail;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+
+class User extends Base implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract {
+	use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
+	use HasFactory;
 
 	/**
 	 * The attributes that are mass assignable.
@@ -38,9 +38,7 @@ class User extends Authenticatable
 	 *
 	 * @var array
 	 */
-	protected $hidden = [
-		'password',
-	];
+	protected $hidden = [ 'password', ];
 
 	/**
 	 * Get the attributes that should be cast.
@@ -48,12 +46,14 @@ class User extends Authenticatable
 	 * @return array<string, string>
 	 */
 	protected function casts() : array {
-		return [
-			'id'                => 'integer',
-			'email_verified_at' => 'timestamp',
+		return [ 'id'                => 'integer',
+				 'email_verified_at' => 'timestamp',
 		];
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getFullNameAttribute() : string {
 		return trim($this->first_name.' '.$this->last_name);
 	}

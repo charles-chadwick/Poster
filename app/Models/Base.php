@@ -1,10 +1,47 @@
 <?php
-
-namespace App\Models\Traits;
+namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-trait HasDateFormat {
+class Base extends Model implements HasMedia {
+	use SoftDeletes;
+	use LogsActivity, InteractsWithMedia;
+
+	public function __construct(array $attributes = []) {
+		parent::__construct($attributes);
+	}
+
+	/**
+	 * Spatie's Media Conversions
+	 * @param  Media|null  $media
+	 * @return void
+	 */
+	public function registerMediaConversions(?Media $media = null): void
+	{
+		$this
+			->addMediaConversion('preview')
+			->fit(Fit::Contain, 300, 300)
+			->nonQueued();
+	}
+
+	/**
+	 * Spatie's Activity Log functions
+	 * @return LogOptions
+	 */
+	public function getActivitylogOptions(): LogOptions
+	{
+		return LogOptions::defaults()
+						 ->useLogName(get_class($this))
+						 ->logOnlyDirty();
+	}
 
 	/**
 	 * @param $value

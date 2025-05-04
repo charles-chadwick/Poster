@@ -9,8 +9,9 @@ class DatabaseSeeder extends Seeder {
 	 * Seed the application's database.
 	 */
 	public function run() : void {
-		( new UserSeeder() )->run();
-		( new PostSeeder() )->run();
+	( new UserSeeder() )->run();
+//		( new PostSeeder() )->run();
+		( new AvatarSeeder() )->run();
 
 	}
 

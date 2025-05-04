@@ -2,19 +2,14 @@
 
 namespace App\Models;
 
-use App\Models\Traits\HasActivity;
-use App\Models\Traits\HasDateFormat;
 use Database\Factories\FollowerFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Follower extends Model {
+class Follower extends Base {
 	/** @use HasFactory<FollowerFactory> */
-	use HasFactory, SoftDeletes;
-	use HasDateFormat, HasActivity;
+	use HasFactory;
 	/**
 	 * The attributes that are mass assignable.
 	 *
