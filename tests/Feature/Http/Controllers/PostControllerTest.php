@@ -28,7 +28,7 @@ final class PostControllerTest extends TestCase
         $response = $this->get(route('posts.index'));
 
         $response->assertOk();
-        $response->assertViewIs('post.index');
+        $response->assertViewIs('posts.index');
         $response->assertViewHas('posts');
     }
 
@@ -42,7 +42,7 @@ final class PostControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertViewIs('post.form');
-        $response->assertViewHas('post');
+        $response->assertViewHas('posts');
     }
 
 
@@ -52,7 +52,7 @@ final class PostControllerTest extends TestCase
         $response = $this->get(route('posts.create'));
 
         $response->assertOk();
-        $response->assertViewIs('post.create');
+        $response->assertViewIs('posts.create');
     }
 
 
@@ -87,7 +87,7 @@ final class PostControllerTest extends TestCase
         $this->assertCount(1, $posts);
         $post = $posts->first();
 
-        $response->assertRedirect(route('post.index'));
+        $response->assertRedirect(route('posts.index'));
     }
 
 
@@ -117,7 +117,7 @@ final class PostControllerTest extends TestCase
 
         $post->refresh();
 
-        $response->assertRedirect(route('post.show', ['post' => $post]));
+        $response->assertRedirect(route('posts.show', ['posts' => $post]));
 
         $this->assertEquals($status, $post->status);
         $this->assertEquals($content, $post->content);

@@ -44,7 +44,7 @@ final class CommentControllerTest extends TestCase
         $response->assertOk();
         $response->assertViewIs('comment.show');
         $response->assertViewHas('comment');
-        $response->assertViewHas('post');
+        $response->assertViewHas('posts');
     }
 
 
@@ -92,7 +92,7 @@ final class CommentControllerTest extends TestCase
         $this->assertCount(1, $comments);
         $comment = $comments->first();
 
-        $response->assertRedirect(route('post.show', ['post' => $post]));
+        $response->assertRedirect(route('posts.show', ['posts' => $post]));
     }
 
 
@@ -131,6 +131,6 @@ final class CommentControllerTest extends TestCase
         $this->assertCount(1, $comments);
         $comment = $comments->first();
 
-        $response->assertRedirect(route('post.show', ['post' => $post]));
+        $response->assertRedirect(route('posts.show', ['posts' => $post]));
     }
 }
