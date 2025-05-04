@@ -10,7 +10,8 @@ class DatabaseSeeder extends Seeder {
 	 */
 	public function run() : void {
 //		( new UserSeeder() )->run();
-	( new PostSeeder() )->run();
+( new PostSeeder() )->run();
+		(new CommentSeeder())->run();
 		//		( new AvatarSeeder() )->run();
 
 	}

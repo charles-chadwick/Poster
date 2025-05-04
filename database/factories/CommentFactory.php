@@ -7,7 +7,6 @@ use App\Enums\CommentStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 use App\Models\Comment;
-use App\Models\Post;
 use App\Models\User;
 
 class CommentFactory extends Factory {
@@ -28,8 +27,6 @@ class CommentFactory extends Factory {
 		return [
 			'status'     => fake()->randomElement(CommentStatus::class),
 			'content'    => fake()->paragraphs(3, true),
-			'post_id'    => Post::inRandomOrder()
-								->first()->id,
 			'user_id'    => $user->id,
 			'created_at' => $created_at,
 			'updated_at' => $created_at,
