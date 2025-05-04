@@ -11,7 +11,7 @@ use Illuminate\View\View;
 
 class PostController extends Controller {
 	public function index( Request $request ) : View {
-		$posts = Post::where('user_id', request('user_id'))
+		$posts = Post::where('user_id', 12)
 					 ->orderBy('created_at')
 					 ->limit(10)
 					 ->get();
