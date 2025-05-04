@@ -9,3 +9,26 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+.post {
+    @apply px-4 py-2 w-full;
+
+    .header, .details {
+        @apply text-sm;
+    }
+
+    .footer {
+        @apply text-xs;
+    }
+}
+.comment {
+    @apply px-4 py-2 w-full;
+
+    .header, .details {
+        @apply text-sm;
+    }
+
+    .footer {
+        @apply text-xs;
+    }
+}

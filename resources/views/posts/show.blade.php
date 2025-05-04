@@ -15,14 +15,29 @@
     </nav>
 
     <section class="p-4">
-        <ul class="divide-y divide-stone-200">
+        <div class="post">
+            <x-posts.header
+                    :user="$post->user"
+                    :href="route('posts.show', $post)"
+                    :date="$post->created_at"
+            />
+            <x-posts.content>{{ $post->content }}</x-posts.content>
+            <x-posts.footer
+                    href="#comments"
+                    :comments="$post->comments"
+                    :reactions="$post->reactions"
+            />
+        </div>
+    </section>
+
+    <section class="p-4">
+        <h3>Comments:</h3>
+        <ul class="divide-y divide-stone-200" id="comments">
             @forelse($comments as $comment)
                 <li>
                     <div class="comment">
                         <x-posts.header
                                 :user="$comment->user"
-                        />
-                        <x-posts.details
                                 :href="route('posts.show', $post)"
                                 :date="$comment->created_at"
                         />
