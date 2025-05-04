@@ -4,6 +4,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Traits\HasActivity;
 use App\Models\Traits\HasDateFormat;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,7 +16,8 @@ class User extends Authenticatable
 {
 	/** @use HasFactory<UserFactory> */
 	use HasFactory, Notifiable, SoftDeletes;
-	use HasDateFormat;
+	use HasDateFormat, HasActivity;
+
 	/**
 	 * The attributes that are mass assignable.
 	 *

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasActivity;
 use App\Models\Traits\HasDateFormat;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Reaction extends Model {
 	use HasFactory, SoftDeletes;
-	use HasDateFormat;
+	use HasDateFormat, HasActivity;
 	/**
 	 * The attributes that are mass assignable.
 	 *

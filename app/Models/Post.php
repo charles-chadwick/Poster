@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasActivity;
 use App\Models\Traits\HasDateFormat;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,7 +18,7 @@ use Illuminate\Notifications\Notifiable;
  */
 class Post extends Model {
 	use HasFactory, SoftDeletes, Notifiable;
-	use HasDateFormat;
+	use HasDateFormat, HasActivity;
 
 	/**
 	 * The attributes that are mass assignable.
