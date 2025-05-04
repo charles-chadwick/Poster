@@ -17,20 +17,20 @@ class PostStoreRequest extends FormRequest {
 	 */
 	public function rules() : array {
 		return [
-			'status'  => [
-				'required',
-				'string',
-				'max:25'
-			],
+//			'status'  => [
+//				'required',
+//				'string',
+//				'max:25'
+//			],
 			'content' => [
 				'required',
 				'string'
 			],
-			'user_id' => [
-				'required',
-				'integer',
-				'exists:users,id'
-			],
+//			'user_id' => [
+//				'required',
+//				'integer',
+//				'exists:users,id'
+//			],
 		];
 	}
 }

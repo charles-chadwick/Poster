@@ -7,7 +7,7 @@
             content="width=device-width, initial-scale=1"
     >
 
-    <title>{{ $title." - Poster" ?? "Poster" }}</title>
+    <title>{{ $title ?? "Poster" }}</title>
 
     <!-- Fonts -->
     <link

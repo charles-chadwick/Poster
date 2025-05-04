@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\PostStatus;
 use App\Http\Requests\PostStoreRequest;
 use App\Http\Requests\PostUpdateRequest;
 use App\Models\Post;
@@ -28,16 +29,20 @@ class PostController extends Controller {
 	}
 
 	public function create( Request $request ) : View {
-		return view('post.create');
+		return view('post.form');
 	}
 
 	public function store( PostStoreRequest $request ) : RedirectResponse {
-		$post = Post::create($request->validated());
+		$post_data = $request->validated();
+		$post_data[ 'user_id' ] = auth()->user()->id;
+		$post_data[ 'status' ] = PostStatus::Published;
+
+		$post = Post::create($post_data);
 
 		$request->session()
 				->flash('post.title', $post->title);
 
-		return redirect()->route('post.show', [ 'post' => $post ]);
+		return redirect()->route('posts.show', [ 'post' => $post ]);
 	}
 
 	public function update( PostUpdateRequest $request, Post $post ) : RedirectResponse {

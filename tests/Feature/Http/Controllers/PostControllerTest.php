@@ -41,7 +41,7 @@ final class PostControllerTest extends TestCase
         $response = $this->get(route('posts.show', $post));
 
         $response->assertOk();
-        $response->assertViewIs('post.show');
+        $response->assertViewIs('post.form');
         $response->assertViewHas('post');
     }
 
