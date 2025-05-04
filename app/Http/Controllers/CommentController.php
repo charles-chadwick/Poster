@@ -48,7 +48,7 @@ class CommentController extends Controller {
 	public function store( CommentStoreRequest $request ) : RedirectResponse {
 		$comment = Comment::create($request->validated());
 
-		return redirect()->route('post.show', [ 'post' => $comment->post ]);
+		return redirect()->route('posts.show', [ 'posts' => $comment->post ]);
 	}
 
 	/**
@@ -59,6 +59,6 @@ class CommentController extends Controller {
 	public function update( CommentUpdateRequest $request, Comment $comment ) : RedirectResponse {
 		$comment->save();
 
-		return redirect()->route('post.show', [ 'post' => $comment->post ]);
+		return redirect()->route('posts.show', [ 'posts' => $comment->post ]);
 	}
 }

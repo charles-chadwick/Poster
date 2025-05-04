@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Notifications\Notifiable;
 
@@ -55,7 +56,7 @@ class Post extends Base {
 	/**
 	 * @return MorphToMany
 	 */
-	public function reactions() : MorphToMany {
-		return $this->morphToMany(Reaction::class, 'reactionable');
+	public function reactions() : MorphMany {
+		return $this->morphMany(Reaction::class, 'reactionable', "on", "on_id");
 	}
 }

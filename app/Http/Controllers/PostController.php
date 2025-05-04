@@ -12,24 +12,25 @@ use Illuminate\View\View;
 
 class PostController extends Controller {
 	public function index( Request $request ) : View {
-		$posts = Post::where('user_id', 12)
+		$posts = Post::where('user_id', auth()->user()->id)
 					 ->orderBy('created_at')
 					 ->limit(10)
 					 ->get();
 
-		return view('post.index', [
+		return view('posts.index', [
 			'posts' => $posts,
 		]);
 	}
 
 	public function show( Request $request, Post $post ) : View {
-		return view('post.show', [
+		return view('posts.show', [
 			'post' => $post,
+			'comments' => $post->comments()->orderBy('created_at')->get(),
 		]);
 	}
 
 	public function create( Request $request ) : View {
-		return view('post.form');
+		return view('posts.form');
 	}
 
 	public function store( PostStoreRequest $request ) : RedirectResponse {
@@ -40,17 +41,23 @@ class PostController extends Controller {
 		$post = Post::create($post_data);
 
 		$request->session()
-				->flash('post.title', $post->title);
+				->flash('posts.title', $post->title);
 
-		return redirect()->route('posts.show', [ 'post' => $post ]);
+		return redirect()->route('posts.show', [ 'posts' => $post ]);
+	}
+
+	public function edit( Post $post ) : View {
+		return view('posts.form', [
+			'post' => $post,
+		]);
 	}
 
 	public function update( PostUpdateRequest $request, Post $post ) : RedirectResponse {
 		$post->update($request->validated());
 
 		$request->session()
-				->flash('post.title', $post->title);
+				->flash('posts.title', $post->title);
 
-		return redirect()->route('post.show', [ 'post' => $post ]);
+		return redirect()->route('posts.show', [ 'posts' => $post ]);
 	}
 }
